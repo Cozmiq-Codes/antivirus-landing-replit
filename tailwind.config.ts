@@ -87,6 +87,10 @@ export default {
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
       },
+      boxShadow: {
+        'soft': '0 8px 20px rgba(0, 0, 0, 0.08)',
+        'soft-lg': '0 12px 28px rgba(0, 0, 0, 0.1)',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

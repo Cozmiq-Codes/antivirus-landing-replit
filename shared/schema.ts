@@ -1,18 +1,89 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+// Plans and Pricing
+export const planTiers = ["free", "premium", "ultimate"] as const;
+export type PlanTier = typeof planTiers[number];
+
+export const billingTerms = ["monthly", "yearly"] as const;
+export type BillingTerm = typeof billingTerms[number];
+
+export interface Plan {
+  id: string;
+  tier: PlanTier;
+  name: string;
+  monthlyPrice: number;
+  yearlyPrice: number;
+  devices: number;
+  features: string[];
+  isBestValue?: boolean;
+}
+
+// Add-ons for checkout upsell
+export interface AddOn {
+  id: string;
+  name: string;
+  description: string;
+  monthlyPrice: number;
+  yearlyPrice: number;
+}
+
+// Cart item
+export interface CartItem {
+  planId: string;
+  planName: string;
+  tier: PlanTier;
+  billingTerm: BillingTerm;
+  price: number;
+  devices: number;
+  addOns?: AddOn[];
+}
+
+// Order
+export interface Order {
+  id: string;
+  email: string;
+  cartItem: CartItem;
+  promoCode?: string;
+  discount: number;
+  subtotal: number;
+  total: number;
+  createdAt: string;
+}
+
+// Schemas for validation
+export const cartItemSchema = z.object({
+  planId: z.string(),
+  planName: z.string(),
+  tier: z.enum(planTiers),
+  billingTerm: z.enum(billingTerms),
+  price: z.number(),
+  devices: z.number(),
+  addOns: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    description: z.string(),
+    monthlyPrice: z.number(),
+    yearlyPrice: z.number(),
+  })).optional(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+export const createOrderSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  cartItem: cartItemSchema,
+  promoCode: z.string().optional(),
+  paymentDetails: z.object({
+    cardNumber: z.string().min(13, "Invalid card number"),
+    expiryDate: z.string().regex(/^\d{2}\/\d{2}$/, "Format: MM/YY"),
+    cvv: z.string().min(3, "Invalid CVV"),
+    country: z.string().min(2, "Please select a country"),
+  }),
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type CreateOrderInput = z.infer<typeof createOrderSchema>;
+
+export const promoCodeSchema = z.object({
+  code: z.string().min(1, "Please enter a promo code"),
+});
+
+export type PromoCodeInput = z.infer<typeof promoCodeSchema>;
