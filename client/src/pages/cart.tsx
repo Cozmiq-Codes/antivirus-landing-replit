@@ -21,9 +21,10 @@ export default function Cart() {
 
   const promoMutation = useMutation({
     mutationFn: async (code: string) => {
-      return await apiRequest("POST", "/api/promo-code/validate", { code });
+      const response = await apiRequest("POST", "/api/promo-code/validate", { code });
+      return await response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       if (data.valid) {
         setDiscount(data.discount);
         toast({

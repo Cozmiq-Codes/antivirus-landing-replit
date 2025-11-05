@@ -44,9 +44,10 @@ export default function Checkout() {
         country: string;
       };
     }) => {
-      return await apiRequest("POST", "/api/orders", orderData);
+      const response = await apiRequest("POST", "/api/orders", orderData);
+      return await response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       if (data.success) {
         toast({
           title: "Order completed!",
