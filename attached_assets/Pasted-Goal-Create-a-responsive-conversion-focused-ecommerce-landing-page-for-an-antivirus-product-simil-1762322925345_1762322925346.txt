@@ -1,0 +1,255 @@
+Goal: Create a responsive, conversion-focused ecommerce landing page for an antivirus product (similar to Avast). Visual style should feel like Asurion (friendly, rounded cards, human-centric photography, clean grid, trust-first) but with Avast-style orange as the primary color.
+
+Tech stack
+
+Vanilla HTML/CSS/JS (no frameworks) OR Tailwind if you prefer — but keep it lightweight and fast.
+
+File structure:
+
+index.html (landing)
+
+cart.html
+
+checkout.html
+
+assets/ (icons, imagery; use royalty-free placeholders)
+
+If vanilla CSS/JS: styles.css, app.js
+
+Brand & UI guidelines (inspired by Asurion; colored like Avast)
+
+Primary color: #FF7800 (Avast orange). Use for CTAs, highlights, progress, and price accents. 
+f.hubspotusercontent40.net
++2
+designpieces.com
++2
+
+Neutrals: white backgrounds with dark navy text (#2D364C) for strong contrast; allow a deep purple accent if needed for badges. 
+designpieces.com
++1
+
+Layout: generous white space, rounded cards, soft shadows, large readable headings, friendly iconography, and human lifestyle photography with devices.
+
+Accessibility: WCAG-AA contrast, semantic HTML, focus states, skip-to-content, ARIA for interactive elements, keyboard-only navigation.
+
+Content & sections (research-driven)
+
+Build these sections in this order; copy can be adapted from the points below.
+
+Header (sticky)
+
+Left: logo (text logo okay).
+
+Right: anchor links (Features, Pricing, Compare, Reviews, FAQ, Support), CTA button “Buy Now”.
+
+Hero
+
+H1: “All-in-one protection for every device.”
+
+Subhead pulls from real value props: AI-powered anti-scam guidance, block scam sites & emails, defend against viruses & ransomware, check Wi-Fi security. 
+Avast
++2
+Avast
++2
+
+Primary CTA: Buy Now — 30-day money-back guarantee; Secondary: Try Free. (Money-back messaging is standard in Avast flows.) 
+Avast
+
+Trust bar: OS icons (Windows, macOS, Android, iOS), “Trusted by millions”, “Award-winning protection”.
+
+Features grid (4–6 cards)
+Use rounded cards with icons and short benefit copy:
+
+AI Anti-Scam Guidance (Avast Assistant-style).
+
+Real-time Malware & Ransomware Shield.
+
+Web/Email Shield & Anti-Phishing.
+
+Smart Scan (quick checkups).
+
+Firewall/Network Protection (control remote access).
+
+Wi-Fi Security Check. 
+Avast
++3
+Avast
++3
+Avast
++3
+
+How it works (3 steps)
+Download → Smart Scan → Stay protected (auto-updates, real-time shields).
+
+Pricing (toggle Monthly/Yearly)
+Three plan cards with clear device coverage:
+
+Free — essential antivirus & basic web protection.
+
+Premium Security — full protection for 1 or multiple devices, anti-phishing/scam, advanced shields.
+
+Ultimate — add VPN, Cleanup, AntiTrack as included (or offer as upsells; see checkout). 
+Avast
++1
+
+Each card: bullet benefits, Buy Now button (orange), small print (auto-renew note), badge “30-day money-back guarantee.” 
+Avast
+
+Comparison table
+Columns: Free vs Premium vs Ultimate. Rows: AI anti-scam, ransomware shield, firewall, web/email shield, Wi-Fi check, VPN, Cleanup, AntiTrack. Checkmarks and clear “Best Value” badge on Ultimate. (Map features to research above.) 
+Avast
++2
+Avast
++2
+
+Customer testimonials
+3–5 cards with stars, short quotes, first name + city. Add device/context photos.
+
+FAQ
+Billing, device limits, refund window (30 days), installation steps, how to cancel/renew, support hours. 
+Avast
+
+Security/Trust badges
+Money-back guarantee, secure checkout, OS compatibility, privacy pledge.
+
+Footer
+Links: Features, Pricing, Compare, Support, Terms, Privacy, Contact. Social icons; small copyright.
+
+Cart & checkout (must-have behavior)
+
+Cart flow: Clicking any “Buy Now” sets {planId, planName, term, price, devices} in localStorage and navigates to cart.html.
+
+Cart page: Show plan summary, quantity/device toggle (if applicable), promo code box, subtotal, proceed button.
+
+Checkout page (high-converting with upsells):
+
+Step 1: Email + create account (inline validation).
+
+Step 2: Upsell modal before payment: offer add-ons VPN, Cleanup, AntiTrack with short benefits and toggles; live price update. (These reflect Avast’s Ultimate bundle components.) 
+support.avast.com
+
+Step 3: Payment form (card fields, country, VAT).
+
+Order summary: plan, term, add-ons, total, “30-day money-back guarantee.” 
+Avast
+
+Routing:
+
+All “Buy Now” buttons → cart.html
+
+“Proceed to Checkout” → checkout.html
+
+After successful payment, show thank-you.html (optional) with license/setup steps.
+
+Event tracking (data-attributes):
+
+data-evt="cta_click" data-plan="premium"; data-evt="upsell_accept" data-addon="vpn"; data-evt="checkout_complete".
+
+Design system tokens
+
+Colors:
+
+--brand: #FF7800; (primary)
+
+--ink: #2D364C; (body text)
+
+--bg: #FFFFFF; (base)
+
+--muted: #F7F7F9; (sections)
+
+--accent: #6534AC; (small accents only) 
+designpieces.com
+
+Radii: .rounded-xl feel (e.g., 12–16px).
+
+Shadows: soft, subtle (box-shadow: 0 8px 20px rgba(0,0,0,.08)).
+
+Type: modern sans (e.g., Inter, system-UI), large H1 (clamp), 1.0–1.2 line-height for headings, 1.6+ for body.
+
+Buttons: pill/rounded, solid orange primary; subtle outline secondary.
+
+Cards: white background, rounded, icon top, concise copy.
+
+Performance & a11y
+
+Optimize images, lazy-load below the fold, prefetch cart.html and checkout.html, defer JS.
+
+Keyboard traps avoided; escape to close modals; ARIA roles on dialogs; visible focus rings.
+
+Copy suggestions (ready to paste)
+
+Hero H1: “All-in-one protection for every device.”
+
+Subhead: “AI-powered anti-scam guidance, real-time malware and ransomware defense, safer browsing & email, and Wi-Fi security you can trust.” 
+Avast
++2
+Avast
++2
+
+Primary CTA: “Buy Now — 30-day money-back guarantee.” 
+Avast
+
+Feature blurbs:
+
+“Spot scams fast with AI guidance.” 
+Avast
+
+“Block malicious sites and phishing emails.” 
+Avast
+
+“Stop ransomware before it strikes.” 
+Avast
+
+“Secure your home Wi-Fi network.” 
+Avast
+
+Plan labels: Free / Premium Security / Ultimate (VPN + Cleanup + AntiTrack). 
+support.avast.com
+
+Acceptance criteria
+
+Page passes Lighthouse 90+ for Performance, Accessibility, Best Practices on desktop.
+
+CTA buttons are prominent, sticky header shows a Buy CTA on scroll.
+
+Pricing table has Monthly/Yearly toggle (JS).
+
+“Buy Now” navigates to cart.html with plan details persisted; checkout offers upsells as a modal step and updates totals instantly.
+
+Comparison table shows at least 8 rows with clear checks/dashes.
+
+Testimonials are in accessible cards with aria-label star ratings.
+
+All external links open in new tabs with rel="noopener".
+
+No layout shift on first paint (reserve image space).
+
+Clean, commented code.
+
+Extra things I recommend adding (optional but helpful)
+
+Sticky bottom CTA on mobile.
+
+Exit-intent offer (e.g., 10% off first year).
+
+Trust markers: “30-day money-back” seal, “Secure checkout,” “Auto-renew — cancel anytime.” 
+Avast
+
+Device chooser (Windows/macOS/Android/iOS) that filters feature badges per OS.
+
+FAQ accordion near pricing.
+
+Live chat or quick contact.
+
+Quick research notes behind the copy
+
+Avast highlights AI-powered anti-scam guidance (Avast Assistant), blocking scam websites/emails, malware/ransomware defense, and Wi-Fi checks. 
+Avast
++2
+Avast
++2
+
+Ultimate bundles Premium Security + VPN, Cleanup, AntiTrack; great candidates for checkout upsells. 
+support.avast.com
+
+Brand orange is #FF7800 (official guides + palette references).
